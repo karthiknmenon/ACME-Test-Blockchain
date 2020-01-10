@@ -16,18 +16,23 @@
  * Write your model definitions here
  */
 
-namespace org.acme.airline.aircraft
-
-asset Aircraft identified by aircraftId{
-  o String aircraftId
-  o Ownership ownershipType default = "leased"
-  o Integer firstClassTicket
-  o Integer businessClassTicket
-  o Integer economyClassTicket
-  o String nickName optional 
+namespace org.acme.airline.participant
+concept Contact {
+  o String fName
+  o String lName
+  o String email
 }
 
-enum Ownership{
-  o leased
-  o owned
+abstract participant ACMEParticipant identified by participantKey {
+  o String participantKey
+  o Contact contact
+}
+
+
+participant ACMENetworkAdmin extends ACMEParticipant {
+}
+participant ACMEPersonnel extends ACMEParticipant {
+  o String department
+}
+participant B2BParticipant extends ACMEParticipant {
 }

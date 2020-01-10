@@ -12,22 +12,18 @@
  * limitations under the License.
  */
 
-/**
- * Write your model definitions here
- */
-
-namespace org.acme.airline.aircraft
-
-asset Aircraft identified by aircraftId{
-  o String aircraftId
-  o Ownership ownershipType default = "leased"
-  o Integer firstClassTicket
-  o Integer businessClassTicket
-  o Integer economyClassTicket
-  o String nickName optional 
+rule NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "**"
+    action: ALLOW
 }
 
-enum Ownership{
-  o leased
-  o owned
+rule NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
 }
