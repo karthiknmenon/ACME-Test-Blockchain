@@ -31,3 +31,14 @@ concept Route {
   o String DestinationCode regex=/[A-Z][A-Z][A-Z]/
   o DateTime schedule
 }
+
+transaction createFlight {
+  o String flightId
+  o String originCode
+  o String DestinationCode
+  o DateTime schedule
+}
+
+event flightCreated {
+  o String flightId
+}
